@@ -1,0 +1,32 @@
+ [
+    {
+        "task": "Buy groceries",
+        "priority": "High",
+        "completed": false
+    },
+    {
+        "task": "Clean the house",
+        "priority": "Medium",
+        "completed": false
+    },
+    {
+        "task": "Take the dog for a walk",
+        "priority": "Low",
+        "completed": true
+    },
+    {
+        "task": "Do laundry",
+        "priority": "High",
+        "completed": false
+    },
+    {
+        "task": "Pay bills",
+        "priority": "High",
+        "completed": false
+    },
+    {
+        "task": "Call the doctor",
+        "priority": "Medium",
+        "completed": false
+    }
+]
