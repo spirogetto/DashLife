@@ -1,17 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import AddTodo from './addtodo';
 import TodoCard from './todocard';
 import demodata from '../LocalData/demoData.json'
 
 function TodoBoard() {
 
+    // this is the main todo board where are two parts
+
     const elem = (
     <View style = {styles.boardbox}>
+
+        {/* first part is that you have to add a todo */}
         <View style = {[styles.addbox,styles.addshadow]}>
-            <AddTodo/>
+            <AddTodo/> 
         </View>
-        <View style = {styles.cardbox}>
+
+       <ScrollView style = {styles.cardbox}>
+
+            {/* ---Here we will create cards that are list of todos actually  --- */}
 
             {
                 demodata.map((eachtodo)=>{
@@ -29,7 +36,7 @@ function TodoBoard() {
             }
             
 
-        </View>
+        </ScrollView>
 
 
     </View>
