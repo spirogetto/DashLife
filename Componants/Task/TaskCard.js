@@ -1,28 +1,27 @@
 import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { colorList } from '../../misc/color';
-import { updateTodo } from '../../firebase/firebaseCRUD';
+import { updateTask, updateTodo } from '../../firebase/firebaseCRUD';
 
 let colorNo = 3;
 
 
-function TodoCard(prop) {
+function TaskCard(prop) {
 
-        const obj = {completed : !prop.completed};
+        const obj = {hour : prop.hour-1};
         const id = prop.id; 
         
         prop.completed? colorNo =1 : colorNo =1;        
         function cardPress(){
 
-            updateTodo(id,obj)
+            updateTask(id,obj)
 
         }
 
     const elem = (
 
         <Pressable style= {styles.cardbox}  onPress={() =>cardPress()}  >
-            <Text style={styles.todoTitle}>{prop.title}</Text>
-            <Text> {prop.completed? 'খতম করা হয়েছে': 'নাহ খতম হয় নাই!'}</Text>
-            <Text>{prop.description}</Text>
+            <Text style= {styles.taskCategory}>{prop.category}</Text>
+            <Text>{prop.hour}hr {prop.minute}min</Text>
 
         </Pressable>
 
@@ -33,7 +32,7 @@ function TodoCard(prop) {
     
 };
 
-export default TodoCard;
+export default TaskCard;
 
 
 const styles = StyleSheet.create({
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor : colorList[colorNo]
     },
 
-    todoTitle :{
+    taskCategory :{
         color : colorList[5],
         alignSelf :'center',
 

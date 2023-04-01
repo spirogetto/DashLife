@@ -1,67 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import {collection, getDocs} from 'firebase/firestore'
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { db } from '../../firebase/firebaseConfig';
-import AddTodo from './addtodo';
-import TodoCard from './todocard';
-
 import { async } from '@firebase/util';
-import { getTodos } from '../../firebase/firebaseCRUD';
+import { getTasks, getTodos } from '../../firebase/firebaseCRUD';
 import { colorList } from '../../misc/color';
+import TaskCard from './TaskCard';
 
-function TodoBoard() {
+function TaskBoard() {
 
-    const [todoTasks, settodoTasks] = useState([]);
+    const [Tasks, setTasks] = useState([]);
     
     useEffect(() => {
 
-        getTodos().then(returnedData => settodoTasks(returnedData));      
+        getTasks().then(returnedData => setTasks(returnedData));      
     })
-    
-
-
-    
     //calling data from database
 
     // this is the main todo board where are two parts
 
     const elem = (
-           
-            <ScrollView style = {styles.cardbox}
-            
-            >
-                
-                    {/* ---Here we will create cards that are list of todos actually  --- */}
-
-                    {
-                        todoTasks.map((eachtodo)=>{
-
-                            const rend = (
-                                <TodoCard
-                                title = {eachtodo?.title}
-                                description = {eachtodo?.description}
-                                completed = {eachtodo?.completed}
-                                id = {eachtodo.id}
-                                />
-                            );
-                            return rend;
-
-                        })
-                    }
-                    
-
-                </ScrollView>
+                <FlatList
+                style ={styles.boardbox}
+                data={Tasks}
+                renderItem={({item})=>(
+                        <TaskCard
+                            category = {item.category}
+                            hour = {item.hour}
+                            minute = {item.minute}
+                            id = {item?.id}
+                            />
+    )}
+                />
 
 
 
     );
-
-    return elem;
+    return elem ;
     
 };
 
-export default TodoBoard;
+export default TaskBoard;
 
 
 const styles = StyleSheet.create({
@@ -113,4 +93,3 @@ const styles = StyleSheet.create({
 
    }
   });
-  

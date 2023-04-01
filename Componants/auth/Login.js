@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
+import { useState } from 'react'
 
 const Login = () => {
 
@@ -12,14 +13,14 @@ const Login = () => {
       <Text>Login</Text>
 
       <TextInput
-        onChangeText ={(val => sethold(val))}
+        onChangeText ={(val => setemail(val))}
         placeholder='Enter Emali'
         style = {styles.emailInput}
       />
 
       <TextInput
-        onChangeText ={(val => sethold(val))}
-        placeholder='Enter Emali'
+        onChangeText ={(val => setpassword(val))}
+        placeholder='Enter Password'
         style = {styles.emailInput}
       />
     </View>
